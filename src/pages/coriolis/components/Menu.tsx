@@ -22,8 +22,11 @@ const Menu = () => {
 }
 
 const MissileMenu = () => {
-  // const [width, setWidth] = useState(280);
-  const { getMissile, selectMissile, selectedId } = useMissileStore();  
+  const { selectedId, selectMissile } = useMissileStore();
+  const missile = useMissileStore((s) => s.missiles.find(i => i.id === selectedId));
+  const update = useMissileStore((s) => s.updateSelectedData);  
+
+  if (!missile) return <div>Select an item</div>
 
   return (
     <div
@@ -37,33 +40,52 @@ const MissileMenu = () => {
             <AccordionContent className="space-y-4">
               <div className="bg-muted h-[1px]" />
               <div className="space-y-4 px-3">
-                <Label>Mass</Label>
-                <Slider defaultValue={[45]} max={90} step={1} />
+                <div className="flex justify-between">
+                  <Label>Mass</Label>
+                  <span className="text-muted-foreground">{missile.data.mass}</span>
+                </div>
+                <Slider key={missile.id} defaultValue={[missile.data.mass]} min={1} max={20} step={1} onValueChange={([v]) => update({ mass: v })} />
+
               </div>
+              
               <div className="bg-muted h-[1px]" />
+              
               <div className="space-y-4 px-3">
                 <div className="flex justify-between">
                   <Label>Velocity</Label>
-                  <p className="text-muted-foreground">sd</p>
+                  <span className="text-muted-foreground">{missile.data.vel}</span>
                 </div>
-                <Slider defaultValue={[45]} max={90} step={1} />
+                <Slider key={missile.id} defaultValue={[missile.data.vel]} min={1} max={20} step={1} onValueChange={([v]) => update({ vel: v })} />
               </div>
+              
               <div className="bg-muted h-[1px] mb-3" />
+              
               <div className="space-y-4 px-3">
-                <Label>Tangent rotation</Label>
-                <Slider defaultValue={[180]} max={360} step={1} />
+                <div className="flex justify-between">
+                  <Label>Rotation</Label>
+                  <span className="text-muted-foreground">{missile.data.phiDeg}</span>
+                </div>
+                <Slider key={missile.id} defaultValue={[missile.data.phiDeg]} min={1} max={20} step={1} onValueChange={([v]) => update({ phiDeg: v })} />
               </div>
+
               <div className="bg-muted h-[1px]" />
+              
               <div className="space-y-4 px-3">
-                <Label>Elevation angle</Label>
-                <Slider defaultValue={[45]} max={90} step={1} />
+                <div className="flex justify-between">
+                  <Label>Elevation angle</Label>
+                  <span className="text-muted-foreground">{missile.data.alphaDeg}</span>
+                </div>
+                <Slider key={missile.id} defaultValue={[missile.data.alphaDeg]} min={1} max={20} step={1} onValueChange={([v]) => update({ alphaDeg: v })} />
               </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
       <div>
-        <Button className="bg-background text-muted-foreground hover:bg-muted border" size={"icon"} onClick={() => {selectMissile('-1')}}>
+        <Button
+          className="bg-background text-muted-foreground hover:bg-muted border"
+          size={"icon"} onClick={() => {selectMissile('-1')}}
+        >
           <ChevronLeft color="#d4d4d4" size={20} />
         </Button>
       </div>

@@ -6,7 +6,7 @@ const Planet = () => {
 
   const handleOnPointerDown = (event: ThreeEvent<PointerEvent>) => {
     if (!event.ctrlKey) return;
-    addMissile(1, event.point.clone(), 1, 0, 0);
+    addMissile(1, event.point.clone(), 1, 10, 0);
   }
 
   return (

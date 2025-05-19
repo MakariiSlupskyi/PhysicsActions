@@ -4,7 +4,7 @@
 - [x] Missile menu
 - [x] Add shadcn
 - [x] Planet params
-- [ ] Missiles params
+- [x] Missiles params
 - [ ] Trajectories
 - [ ] Forces
 - [ ] Missile play
