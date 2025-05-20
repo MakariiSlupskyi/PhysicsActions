@@ -1,15 +1,9 @@
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
-import { Vector3, Mesh } from 'three';
+import { useRef } from "react";
+import { Mesh } from 'three';
 import useMissileStore from "../../../stores/missileStore";
-import { Line } from "@react-three/drei";
 import Trajectory from "./Trajectory";
 // import { Missile } from "../../../types/missle";
-
-const G = 6.67430e-11;
-const EARTH_MASS = 5.972e24;
-const EARTH_RADIUS = 6.371e6;
-const OMEGA = new Vector3(0, 0, 7.2921159e-5);
 
 const MissileMarker = ({ id }: { id: string }) => {
   const { selectMissile, selectedId } = useMissileStore(); 
