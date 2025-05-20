@@ -1,11 +1,13 @@
 import useMissileStore from "@/stores/missileStore";
 import usePlanetStore from "@/stores/planetStore";
 import useSimulationStore from "@/stores/simulationStore";
+import useVisualStore from "@/stores/visualStore";
 import { Line } from "@react-three/drei"
 import * as THREE from 'three';
 
 const Trajectory = ({ id }: { id: string }) => {
   const missile = useMissileStore((s) => s.missiles.find(i => i.id === id));
+  const { original, coriolis } = useVisualStore()
 
   if (!missile) return <div>An error getting missle</div>
 
@@ -22,17 +24,17 @@ const Trajectory = ({ id }: { id: string }) => {
       lineWidth={4}
     />
 
-    <Line
+    { original && <Line
       points={trajectory}
       color="cyan"
       lineWidth={1}
-    />
-    
-    <Line
+    /> }
+      
+    { coriolis && <Line
       points={coriolisTrajectory}
       color="yellow"
       lineWidth={1}
-    />
+    /> }
   </>
 }
 

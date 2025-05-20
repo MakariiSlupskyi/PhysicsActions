@@ -6,7 +6,7 @@
 - [x] Planet params
 - [x] Missiles params
 - [x] Trajectories
-- [ ] Forces
+- [x] Simulation settings
+- [x] Visual settings
 - [ ] Missile play
-- [ ] Simulation settings
-- [ ] Visual settings
+- [ ] Forces

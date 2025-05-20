@@ -1,5 +1,4 @@
-import { ChevronDown, ChevronLeft, ChevronUp, Play } from "lucide-react";
-import { useState } from "react";
+import { ChevronLeft, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import useMissileStore from "../../../stores/missileStore";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -9,12 +8,11 @@ import { Button } from "@/components/ui/button";
 import usePlanetStore from "@/stores/planetStore";
 import { Switch } from "@/components/ui/switch";
 import useSimulationStore from "@/stores/simulationStore";
+import useVisualStore from "@/stores/visualStore";
 
-
-const menuStyles = "rounded-lg border border-neutral-700 bg-neutral-900 text-white shadow-xl";
 
 const Menu = () => {
-  const { getMissile, selectMissile, selectedId } = useMissileStore();  
+  const { selectedId } = useMissileStore();  
 
   return (
     <>
@@ -100,6 +98,7 @@ const MissileMenu = () => {
 const BasicMenu = () => {
   const { mass, speed, radius, setMass, setSpeed, setRadius } = usePlanetStore();
   const { steps, setSteps } = useSimulationStore();
+  const { wireframe, original, coriolis, spin, setWireframe, setOriginal, setCoriolis, setSpin } = useVisualStore();
 
   return (
     <div
@@ -119,6 +118,7 @@ const BasicMenu = () => {
                 </div>
                 <Slider defaultValue={[mass]} min={1} max={20} step={1} onValueChange={([v]) => setMass(v)} />
               </div>
+
               <div className="bg-muted h-[1px]" />
               <div className="space-y-4 px-3">
                 <div className="flex gap-2 justify-between">
@@ -127,6 +127,7 @@ const BasicMenu = () => {
                 </div>
                 <Slider defaultValue={[speed]} min={0} max={1} step={0.01} onValueChange={([v]) => setSpeed(v)} />
               </div>
+
               <div className="bg-muted h-[1px] mb-3" />
               <div className="space-y-4 px-3">
                 <div className="flex gap-2 justify-between">
@@ -156,11 +157,20 @@ const BasicMenu = () => {
           <AccordionItem value="visual">
             <AccordionTrigger className="px-3 py-1.5">Visual</AccordionTrigger>
             <AccordionContent className="space-y-4">
+              <div className="bg-muted h-[1px] mb-3" />
+              <div className="space-y-4 px-3">
+                <div className="flex gap-2 justify-between">
+                  <Label>Scene spin</Label>
+                  <span className="text-muted-foreground">{spin}</span>
+                </div>
+                <Slider defaultValue={[spin]} min={0} max={10} step={0.01} onValueChange={([v]) => setSpin(v)} />
+              </div>
+
               <div className="bg-muted h-[1px]" />
               <div className="space-y-4 px-3">
                 <div className="flex gap-2 justify-between">
                   <Label>Wireframe</Label>
-                  <Switch />
+                  <Switch checked={wireframe} onCheckedChange={(v) => setWireframe(v)} />
                 </div>
               </div>
 
@@ -168,14 +178,14 @@ const BasicMenu = () => {
               <div className="space-y-4 px-3">
                 <div className="flex gap-2 justify-between">
                   <Label>Original</Label>
-                  <Switch />
+                  <Switch checked={original} onCheckedChange={(v) => setOriginal(v)} />
                 </div>
               </div>
               <div className="bg-muted h-[1px] mb-3" />
               <div className="space-y-4 px-3">
                 <div className="flex gap-2 justify-between">
                   <Label>Coriolis</Label>
-                  <Switch />
+                  <Switch checked={coriolis} onCheckedChange={(v) => setCoriolis(v)} />
                 </div>
               </div>
 
