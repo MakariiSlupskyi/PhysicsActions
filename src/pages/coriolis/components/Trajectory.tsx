@@ -28,7 +28,7 @@ const Trajectory = ({ id }: { id: string }) => {
       points={trajectory}
       color="cyan"
       lineWidth={1}
-    /> }
+    /> }876044
       
     { coriolis && <Line
       points={coriolisTrajectory}
@@ -103,7 +103,7 @@ function computeCoriolisTrajectoryPoints(
   dt: number = 1 / 60
 ): THREE.Vector3[] {
   const { steps } = useSimulationStore();
-  const { speed, getGGrav, getAngularVelocity } = usePlanetStore()
+  const { speed, getGGrav } = usePlanetStore()
 
   const positions: THREE.Vector3[] = [];
 

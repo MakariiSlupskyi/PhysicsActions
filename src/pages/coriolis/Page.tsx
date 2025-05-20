@@ -1,6 +1,6 @@
-import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber"
+import { Canvas, useFrame } from "@react-three/fiber"
 import { OrbitControls, Stars } from '@react-three/drei';
-import { Group, Vector3 } from "three";
+import { Group } from "three";
 
 import Lignting from "./components/Lighting";
 import NightSkyBG from "./components/NightSkyBG";
