@@ -5,6 +5,8 @@
 - [x] Add shadcn
 - [x] Planet params
 - [x] Missiles params
-- [ ] Trajectories
+- [x] Trajectories
 - [ ] Forces
 - [ ] Missile play
+- [ ] Simulation settings
+- [ ] Visual settings
